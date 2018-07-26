@@ -23,6 +23,8 @@ RF24 myRadio (9,10); // "myRadio" is the identifier you will use in following me
 byte addresses[][6] = {"1Node"}; // Create address for 1 pipe.
 int dataTransmitted;  // Data that will be Transmitted from the transmitter
 
+#define nodeid 3   //ONLY CHANGE ME!!!!
+
 
 struct payload_t
 {
@@ -102,9 +104,9 @@ void setup() {
   // getting_started sketch, and the likelihood of close proximity of the devices. RF24_PA_MAX is default.
  //myRadio.setPALevel(RF24_PA_MIN);
  myRadio.setPALevel(RF24_PA_MAX);  // Uncomment for more power
-const uint64_t pipes[3] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0E2LL, 0xF0F0F0F0E3LL };
+const uint64_t pipes[6] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0E2LL, 0xF0F0F0F0E3LL , 0xF0F0F0F0E4LL , 0xF0F0F0F0E5LL, 0xF0F0F0F0E6LL};
 //  myRadio.openReadingPipe(1, pipes[1]);
-  myRadio.openWritingPipe(pipes[1]); // Use the first entry in array 'addresses' (Only 1 right now)
+  myRadio.openWritingPipe(pipes[nodeid]); // Use the first entry in array 'addresses' (Only 1 right now)
   delay(1000);
   // END RF STUFF
   Serial.begin(115200);
@@ -162,7 +164,7 @@ void changeChannel() {
   
   int sendi=analogRead(A7);
   if (sendi>180){
-  payload_t payload = {0,sendi,channel,0,0};
+  payload_t payload = {nodeid,sendi,channel,0,0};
   Serial.print(channel);
   Serial.print(" ");
   Serial.println(sendi);
