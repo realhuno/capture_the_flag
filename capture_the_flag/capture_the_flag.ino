@@ -23,7 +23,7 @@ RF24 myRadio (9,10); // "myRadio" is the identifier you will use in following me
 byte addresses[][6] = {"1Node"}; // Create address for 1 pipe.
 int dataTransmitted;  // Data that will be Transmitted from the transmitter
 
-#define nodeid 3   //ONLY CHANGE ME!!!!
+#define nodeid 5   //ONLY CHANGE ME!!!!
 
 
 struct payload_t
